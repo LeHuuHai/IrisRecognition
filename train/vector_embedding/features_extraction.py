@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import torch
 from torch import nn
@@ -30,13 +32,20 @@ class FeaturesExtraction:
         features_numpy = features_flatten.squeeze().cpu().numpy()  # Chuyển tensor thành numpy array và loại bỏ chiều batch
         # Lưu đặc trưng vào file numpy
         np.save(output_path, features_numpy)
-        print("Features đã được lưu thành công!")
         return features_numpy
 
 def main():
     features_extraction = FeaturesExtraction()
-    feature = features_extraction.extraction("../../module/normalization_img/00101_L.png", "./features/00101_L.npy")
-    print(feature.shape)
+
+    num_successfull = 0
+    for i in range(1, 100):
+        for j in range(1, 11):
+            for suffix in ['L', 'R']:
+                path = f"../../module/normalization_img/{i:03}{j:02}_{suffix}.png"
+                if os.path.exists(path):
+                    feature = features_extraction.extraction(path, f"./features/{i:03}{j:02}_{suffix}.npy")
+                    num_successfull+=1
+    print(f"feature extracted: {num_successfull} img")
 
 if __name__ == "__main__":
     main()
