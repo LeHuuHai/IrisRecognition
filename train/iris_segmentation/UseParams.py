@@ -3,7 +3,7 @@ import os.path
 import torch
 import cv2
 import numpy as np
-from src.train.segmentation.UNet import UNet
+from UNet import UNet
 
 # Đường dẫn tới mô hình đã lưu
 model_path = 'unet_iris_segmentation_14-11.pth'
@@ -47,8 +47,8 @@ def predict(image_path, model):
     return predicted_mask
 
 
-for i in range (1, 100):
-    for img_index in range (1, 11):
+for i in range (1, 2):
+    for img_index in range (1, 2):
         for suffix in ['L', 'R']:  # Kiểm tra cả hai hậu tố _L và _R
             try:
                 # Đường dẫn tới ảnh cần dự đoán
@@ -68,8 +68,15 @@ for i in range (1, 100):
                 # Lưu các kết quả
                 # cv2.imwrite(f"./segmentation_img/{i:03}{img_index:02}_{suffix}.bmp", raw_img)
                 # cv2.imwrite(f"./segmentation_img/{i:03}{img_index:02}_{suffix}_predict-mask.bmp", predicted_mask * 255)
-                cv2.imwrite(f"./img_result/{i:03}{img_index:02}_{suffix}_binary-mask.png", binary_mask)
+                # cv2.imwrite(f"./img_result/{i:03}{img_index:02}_{suffix}_binary-mask.png", binary_mask)
                 # cv2.imwrite(f"./segmentation_img/{i:03}{img_index:02}_{suffix}_segmentation.png", cv2.bitwise_and(binary_mask, raw_img))
+
+                cv2.imshow("raw", raw_img)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
+                cv2.imshow("segmentation", binary_mask)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
 
                 print(f"Dự đoán {i:03}{img_index:02}_{suffix}.bmp thành công")
 

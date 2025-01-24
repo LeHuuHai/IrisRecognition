@@ -26,7 +26,7 @@ def copy_for_train(mlist, postfix):
                 print(f"Lỗi khi sao chép {source_path_2} tới {new_file_path}: {e}")
 
 def copy_for_test(imgs_index):
-    destination_path = './train/img-test/'
+    destination_path = 'img-test/'
     for i in imgs_index:
         source_path_1 = '../IITD Database/' + f"{i:03}" + "/"
         for j in range(1, 11):
@@ -44,8 +44,8 @@ def copy_for_test(imgs_index):
                     print(f"Lỗi khi sao chép {source_path_2} tới {new_file_path}: {e}")
 
 
-mask_left =  list(range(1, 33)) + [37, 38, 76, 93, 113, 118, 123]
-mask_right = [15, 26, 76, 93, 113, 118, 123]
-copy_for_train(mask_left, "L")
-copy_for_train(mask_right, "R")
-# copy_for_test(list)
+# mask_left =  list(range(1, 33)) + [37, 38, 76, 93, 113, 118, 123]
+# mask_right = [15, 26, 76, 93, 113, 118, 123]
+# copy_for_train(mask_left, "L")
+# copy_for_train(mask_right, "R")
+copy_for_test(list(range(1, 201)))

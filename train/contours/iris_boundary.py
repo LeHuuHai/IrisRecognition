@@ -81,9 +81,9 @@ def find_circle(iris_mask):
 
 
 def main():
-    for i in range(1,100):
-        source_path_1 = "../../segmentation/iris_segmentation/segmentation_img/" + f"{i:03}"
-        for j in range(1,11):
+    for i in range(1,2):
+        source_path_1 = "../iris_segmentation/img_result/" + f"{i:03}"
+        for j in range(1,2):
             for suffix in ['L', 'R']:
                 source_path_2 = source_path_1 + f"{j:02}_" + f"{suffix}" + "_binary-mask.png"
                 image = cv2.imread(source_path_2, cv2.IMREAD_GRAYSCALE)
@@ -98,12 +98,15 @@ def main():
                 cv2.circle(output_image, (circle[3], circle[4]), circle[5], (255, 0, 0), 2)
                 cv2.circle(output_image, (circle[3], circle[4]), 5, (255, 0, 0), 2)
 
-                output_path = "./segmentation_img/" + f"{i:03}" + f"{j:02}_" + f"{suffix}" + ".png"
+                # output_path = "./segmentation_img/" + f"{i:03}" + f"{j:02}_" + f"{suffix}" + ".png"
                 # output_mask_path = "./segmentation_img/" + f"{i:03}" + f"{j:02}_" + f"{suffix}" + "_mask.png"
-                cv2.imwrite(output_path, output_image)  # Sử dụng cv2.imwrite để lưu ảnh
-                # cv2.imwrite(output_mask_path, circle[6])  # Sử dụng cv2.imwrite để lưu ảnh
+                # cv2.imwrite(output_path, output_image)
+                # cv2.imwrite(output_mask_path, circle[6])
                 print("find " + f"{i:03}" + f"{j:02}_" + f"{suffix}" + " successful")
 
+                cv2.imshow("boundary_img", output_image)
+                cv2.waitKey(-1)
+                cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":

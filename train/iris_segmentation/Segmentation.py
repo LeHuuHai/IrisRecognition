@@ -53,7 +53,7 @@ class IrisDataset(Dataset):
         return image, mask
 
 # Đường dẫn tới dữ liệu
-image_dir = '../img-raw/'
+image_dir = '../../img-raw/'
 mask_dir = 'mask_truth/'
 # image_dir = 'TangCuong/img-raw'
 # mask_dir = 'TangCuong/mask_truth'

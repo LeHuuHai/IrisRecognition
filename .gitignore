@@ -2,8 +2,8 @@
 **/mask_json
 
 #train
-**/img-raw
-**/img-test
+img-raw
+img-test
 **/*.pth
 
 ##contours
@@ -19,4 +19,6 @@
 #module
 **/normalization_img
 **/segmentation_img
+**/*.npy
+**/*.pyc
 
